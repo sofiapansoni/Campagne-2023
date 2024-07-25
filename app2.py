@@ -15,7 +15,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.pipeline import make_pipeline
 
 # Caricamento dei dati
-data = pd.read_excel('/Users/sofiapansoni/Desktop/Progetto LFO/Campagne 2023/Campagne-2023/marketing mix model- prime analisi  con data 23-24.xlsx')
+data_file = "marketing mix model- prime analisi  con data 23-24.xlsx"
+data = pd.read_excel(data_file)
 
 # Preparazione dei dati
 features = ['SPEND META', 'SPEND TV', 'SPEND ADS']
@@ -56,6 +57,7 @@ spend_ads = st.sidebar.number_input('Investimento in ADS', min_value=0.0, step=1
 if st.sidebar.button('Predici Donazioni'):
     predizione = predici_donazioni(spend_meta, spend_tv, spend_ads)
     st.write(f'Predizione del numero di donazioni: {predizione[0]:.2f}')
+    st.write(f'Debug: spend_meta={spend_meta}, spend_tv={spend_tv}, spend_ads={spend_ads}, predizione={predizione}')
 
 st.header('Dati Storici')
 st.write(data)
@@ -63,4 +65,5 @@ st.write(data)
 st.header('Valutazione del Modello')
 st.write(f'MSE (Ridge Regression): {mse_ridge:.2f}')
 st.write(f'R^2 (Ridge Regression): {r2_ridge:.2f}')
+
 
